@@ -1,0 +1,185 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "android",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "hidden": true,
+            "toolchainFile": "${sourceDir}/cmake/toolchain/android.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+
+                // this is the ndk version.
+                // if this isn't set, my toolchain file will find the
+                // first ndk folder (if any).
+                // it's best to manually set the ndk version wanted!
+                "ANDROID_NDK_SDK": "26.2.11394342",
+
+                // this is the sdk to compile with. it can be >= or <=
+                // to the ANDROID_NATIVE_API_LEVEL version.
+                "ANDROID_COMPILE_SDK": "34",
+
+                // this is the minSdkVersion.
+                // ndk can and will override this value if the value
+                // is an alias or that minimum platform is no longer
+                // supported, in which case, it sets an new minimum.
+                // "ANDROID_NATIVE_API_LEVEL": "28",
+
+                // this is targetSdkVersion
+                // only used for setting the target version in manifest
+                "ANDROID_TARGET_SDK": "34"
+            }
+        },
+        {
+            "name": "android-armeabi-v7a",
+            "inherits":["android"],
+            "hidden":true,
+            "cacheVariables": { "ANDROID_ABI": "armeabi-v7a" }
+        },
+        {
+            "name": "android-arm64-v8a",
+            "inherits":["android"],
+            "hidden":true,
+            "cacheVariables": { "ANDROID_ABI": "arm64-v8a" }
+        },
+        {
+            "name": "android-x86",
+            "inherits":["android"],
+            "hidden":true,
+            "cacheVariables": { "ANDROID_ABI": "x86" }
+        },
+        {
+            "name": "android-x86_64",
+            "inherits":["android"],
+            "hidden":true,
+            "cacheVariables": { "ANDROID_ABI": "x86_64" }
+        },
+        {
+            "name": "android-armeabi-v7a-nojava",
+            "inherits":["android-armeabi-v7a"],
+            "cacheVariables": { "NO_JAVA": true }
+        },
+        {
+            "name": "android-arm64-v8a-nojava",
+            "inherits":["android-arm64-v8a"],
+            "cacheVariables": { "NO_JAVA": true }
+        },
+        {
+            "name": "android-x86-nojava",
+            "inherits":["android-x86"],
+            "cacheVariables": { "NO_JAVA": true }
+        },
+        {
+            "name": "android-x86_64-nojava",
+            "inherits":["android-x86_64"],
+            "cacheVariables": { "NO_JAVA": true }
+        },
+        {
+            "name": "android-armeabi-v7a-java",
+            "inherits":["android-armeabi-v7a"],
+            "cacheVariables": { "JAVA": true }
+        },
+        {
+            "name": "android-arm64-v8a-java",
+            "inherits":["android-arm64-v8a"],
+            "cacheVariables": { "JAVA": true }
+        },
+        {
+            "name": "android-x86-java",
+            "inherits":["android-x86"],
+            "cacheVariables": { "JAVA": true }
+        },
+        {
+            "name": "android-x86_64-java",
+            "inherits":["android-x86_64"],
+            "cacheVariables": { "JAVA": true }
+        },
+        {
+            "name": "android-armeabi-v7a-sdl2",
+            "inherits":["android-armeabi-v7a"],
+            "cacheVariables": { "SDL2": true }
+        },
+        {
+            "name": "android-arm64-v8a-sdl2",
+            "inherits":["android-arm64-v8a"],
+            "cacheVariables": { "SDL2": true }
+        },
+        {
+            "name": "android-x86-sdl2",
+            "inherits":["android-x86"],
+            "cacheVariables": { "SDL2": true }
+        },
+        {
+            "name": "android-x86_64-sdl2",
+            "inherits":["android-x86_64"],
+            "cacheVariables": { "SDL2": true }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "android-armeabi-v7a-nojava",
+            "configurePreset": "android-armeabi-v7a-nojava",
+            "jobs": 6
+        },
+        {
+            "name": "android-arm64-v8a-nojava",
+            "configurePreset": "android-arm64-v8a-nojava",
+            "jobs": 6
+        },
+        {
+            "name": "android-x86-nojava",
+            "configurePreset": "android-x86-nojava",
+            "jobs": 6
+        },
+        {
+            "name": "android-x86_64-nojava",
+            "configurePreset": "android-x86_64-nojava",
+            "jobs": 6
+        },
+        {
+            "name": "android-armeabi-v7a-java",
+            "configurePreset": "android-armeabi-v7a-java",
+            "jobs": 6
+        },
+        {
+            "name": "android-arm64-v8a-java",
+            "configurePreset": "android-arm64-v8a-java",
+            "jobs": 6
+        },
+        {
+            "name": "android-x86-java",
+            "configurePreset": "android-x86-java",
+            "jobs": 6
+        },
+        {
+            "name": "android-x86_64-java",
+            "configurePreset": "android-x86_64-java",
+            "jobs": 6
+        },
+        {
+            "name": "android-armeabi-v7a-sdl2",
+            "configurePreset": "android-armeabi-v7a-sdl2",
+            "jobs": 6
+        },
+        {
+            "name": "android-arm64-v8a-sdl2",
+            "configurePreset": "android-arm64-v8a-sdl2",
+            "jobs": 6
+        },
+        {
+            "name": "android-x86-sdl2",
+            "configurePreset": "android-x86-sdl2",
+            "jobs": 6
+        },
+        {
+            "name": "android-x86_64-sdl2",
+            "configurePreset": "android-x86_64-sdl2",
+            "jobs": 6
+        }
+    ]
+}
